@@ -16,7 +16,7 @@ npm install @reduxjs/toolkit react-redux lucide-react axios clsx tailwind-merge 
 cd /home/kittu/My_assignment/backend
 python3 -m venv venv
 source venv/bin/activate
-pip install fastapi uvicorn sqlalchemy pydantic python-dotenv langchain langchain-groq langgraph psycopg2-binary databases uvicorn[standard] aiosqlite pydantic-settings
+pip install fastapi uvicorn sqlalchemy pydantic python-dotenv langchain langchain-nvidia-ai-endpoints langgraph psycopg2-binary databases uvicorn[standard] aiosqlite pydantic-settings
 pip freeze > requirements.txt
 
 echo "Setup Complete!"

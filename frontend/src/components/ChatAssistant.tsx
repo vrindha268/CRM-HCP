@@ -55,7 +55,7 @@ const ChatAssistant: React.FC = () => {
       setMessages(prev => [...prev, { role: 'assistant', content: response.data.response }]);
     } catch (error) {
       console.error('Error sending message:', error);
-      setMessages(prev => [...prev, { role: 'assistant', content: 'Sorry, I encountered an error. Please try again or ensure the backend is running and GROQ_API_KEY is set in backend/.env.' }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: 'Sorry, I encountered an error. Please try again or ensure the backend is running and NVIDIA_API_KEY is set in backend/.env.' }]);
     } finally {
       setIsLoading(false);
     }
