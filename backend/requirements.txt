@@ -66,3 +66,5 @@ websockets==16.0
 xxhash==3.7.0
 yarl==1.23.0
 zstandard==0.25.0
+langchain-groq==0.2.1
+asyncpg==0.30.0

@@ -3,14 +3,14 @@ import json
 from typing import Annotated, TypedDict, Dict, Any, List
 from langgraph.graph import StateGraph, END
 from langgraph.graph.message import add_messages
-from langchain_nvidia_ai_endpoints import ChatNVIDIA
+from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage, ToolMessage
 from langchain_core.tools import tool
 from langgraph.prebuilt import ToolNode
 from dotenv import load_dotenv
 
 load_dotenv()
-NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY", "")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 
 # --- TOOLS ---
 
@@ -86,7 +86,7 @@ class AgentState(TypedDict):
     current_state: dict
 
 def call_model(state: AgentState):
-    llm = ChatNVIDIA(model="z-ai/glm-5.1", nvidia_api_key=NVIDIA_API_KEY, temperature=0)
+    llm = ChatGroq(model="gemma2-9b-it", groq_api_key=GROQ_API_KEY, temperature=0)
     llm_with_tools = llm.bind_tools(tools)
     
     sys_msg = SystemMessage(content=f"""You are an AI assistant for a life science field representative.
@@ -126,8 +126,8 @@ workflow.add_edge("tools", "agent")
 app_graph = workflow.compile()
 
 def run_chat_agent(message: str, current_state: dict):
-    if not NVIDIA_API_KEY:
-        return "Please set NVIDIA_API_KEY in the backend .env file.", {}
+    if not GROQ_API_KEY:
+        return "Please set GROQ_API_KEY in the backend .env file.", {}
         
     state = {
         "messages": [HumanMessage(content=message)],
